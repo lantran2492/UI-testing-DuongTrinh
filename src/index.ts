@@ -1,5 +1,7 @@
 console.log("Hello World!!");
 
+//-------------------------------------------------------------------
+//BUỔI 2
 let isActive: boolean;
 
 isActive = true;
@@ -91,3 +93,131 @@ console.log(constArray);
 //compare expected và actual result
 const constArrayB: readonly number[] = [1, 2, 3];
 // constArrayB[0] = 3
+
+// ------------------------------------------------------------------
+//25/9 - BUỔI 3
+//array quy định số lượng phần tử và kiểu dữ liệu phần tử
+let userInfo: [string, number, boolean];
+userInfo = ["Tai", 20, false];
+
+//enum
+enum dayOfWeek {
+  MONDAY = "MON",
+  TUESDAY = "TUESDAY",
+  WEDNESDAY = "WEDNESDAY",
+}
+let dayOne = dayOfWeek.MONDAY;
+let dayTwo = dayOfWeek.TUESDAY;
+// console.log(dayOne == dayTwo);
+
+let day1 = dayOfWeek.MONDAY;
+let day2 = dayOfWeek.MONDAY;
+let day3 = dayOfWeek.MONDAY;
+console.log();
+
+//khai báo kiểu dữ liệu cho một Object => sử dụng nhiều trong automation api
+type Car = {
+  name: string;
+  model: string;
+  door: number;
+  power?: number;
+  isHybrid?: boolean;
+};
+
+let myCar: Car = {
+  name: "Vios",
+  model: "2020",
+  door: 2,
+  // power: 1.2,
+};
+
+let myCar2: Car = {
+  name: "Kia",
+  model: "2020",
+  door: 2,
+  power: 1.2,
+};
+
+let myCar3: Car = {
+  name: "Vios",
+  model: "2020",
+  // power: 1.2,
+  isHybrid: true,
+  door: 2,
+};
+
+type Adidas = {
+  color: string;
+};
+
+type mixCarAdidas = Car & Adidas;
+// type mixCar = {
+//   name: string;
+//   model: string;
+//   door: number;
+//   power?: number;
+//   isHybrid?: boolean;
+//   color: string;
+// };
+
+let mixSample = {
+  name: "Vios",
+  model: "2020",
+  door: 2,
+  power: 1.2,
+  isHybrid: true,
+  color: "red",
+};
+
+console.log();
+
+interface CarInterface {
+  name: string;
+  model: string;
+  door: number;
+  power?: number;
+  isHybrid?: boolean;
+}
+
+interface AdidasInterface {
+  color: string;
+}
+
+let myCar4: CarInterface = {
+  name: "Vios",
+  door: 2,
+  model: "2020",
+};
+
+type yesNo = "Yes" | "No";
+
+let yes: yesNo = "Yes";
+
+let sample: CarInterface & AdidasInterface = {
+  name: "Vios",
+  door: 2,
+  model: "2020",
+  color: "red",
+};
+
+//Toán tử
+//a++2=> cộng sau khi thực thi
+//javascript tự ép kiểu thành số cho phép trừ, nhân, chia. Riêng phép cộng tự ép kiểu thành chuỗi => Bug dễ xảy ra ở phép cộng '4'+ 3 = '43'
+// let aa = 1;
+// let bb = '1';
+// console.log(aa==bb);
+
+let myAge = 30;
+console.log(myAge >= 18 && myAge <= 65);
+
+let user3 = {
+  name: "duong",
+  age: 20,
+  married: true,
+};
+//Toán tử spreading, có thể dùng để reuse thông tin và overwrite 1 value nào đó
+let user4 = {
+  ...user3,
+  name: "tai",
+};
+console.log();
