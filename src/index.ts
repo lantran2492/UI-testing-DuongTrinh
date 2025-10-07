@@ -1,51 +1,105 @@
-//Function
-console.log(sum(1, 2));
-
+//BUOI 4 - CALL BACK
+//call back là đưa cho hàm 1 cái hàm khác làm tham số chứ ko phải value của hàm đó
 function sum(a: number, b: number) {
-  let sum = a + b;
-  console.log(`Sum: ${sum}`);
-  return sum;
+  return a + b;
 }
 
-// sum(1, 2);
-
-//với arrow function thì ko thể hoisting nên phải khai báo trước khi gọi hàm
-const tinhtong = (a: number, b: number) => {
-  let sum = a + b;
-  console.log(`Sum: ${sum}`);
-  return sum;
-};
-
-console.log(tinhtong(2, 2));
-
-const m = () => console.log("AAA");
-const sum1 = (a: number, b: number) => a + b;
-
-console.log(sum1(3, 4));
-
-function sum2(a: number = 0, b: number) {
-  let sum = a + b;
-  console.log(`Sum: ${sum}`);
-  return sum;
+function print(sum: number) {
+  console.log(sum);
 }
-console.log(sum2(undefined, 2));
-console.log(sum2(6, 2));
 
-//anonymous function: gọi hàm khi vừa viết ra ngay lập tức
-(function () {
-  console.log("AAAA");
-})();
+print(sum(1, 2));
 
-//rest argument, dynamic argument, tham số mà mình chưa biết rõ số lượng và kiểu dữ liệu
-function sum3(a: string, ...args: number[]) {
-  let sum = 0;
-  if (args != undefined && args != null && args.length > 0) {
-    for (let i = 0; i < args.length; i++) {
-      let num = args[i] ?? 0;
-      sum = sum + num;
-    }
+type Reaction = () => void;
+
+//Login with multiple type
+function login(loginType: "fb" | "gg" | "acc") {
+  console.log("Go to url");
+  console.log("Check page is loaded");
+  switch (loginType) {
+    case "fb":
+      console.log("FB login");
+      break;
+    case "gg":
+      console.log("GG login");
+      break;
+    case "acc":
+      console.log("Account login");
+      break;
   }
-  return sum;
 }
 
-sum3(1, 2, 3, 4, 5);
+function loginFB() {}
+function loginGG() {}
+function loginAcc() {}
+
+// function login2(callback: Function) {
+//   console.log("Go to url");
+//   console.log("Check page is loaded");
+//   callback();
+// }
+
+// login2(loginFB);
+// login2(loginGG);
+// login2(loginAcc);
+
+// function girl meets boy
+function meetBoy(isGoodBoy: boolean, callback: Reaction) {
+  console.log("1.The girl is meeting a boy...");
+  if (isGoodBoy) {
+    console.log("2.1.good boy...");
+  } else {
+    console.log("2.2bad boy...");
+  }
+  setTimeout(() => {
+    callback();
+  }, 5000);
+}
+
+function smile() {
+  console.log("3.1.smile and say 'Nice to meet you! Let's have a coffee'");
+}
+
+function walkaway() {
+  console.log("3.2.She rolls her eyes and walks away");
+}
+
+async function run() {
+  await meetBoy(true, smile);
+  await meetBoy(false, walkaway);
+}
+run();
+//nhớ kiểm tra hàm mình sử dụng bằng cách hover vào await để kiểm tra lại hàm có đc viết đúng theo dạng Promise hay ko. Nếu viết theo dạng Promise thì mới await dc
+//với javascript cũng phải coi xem hàm có phải là một hàm Promise hay không, nếu phải thì phải await
+
+function waitForMessage(isGoodBoy: boolean) {
+  console.log("The girl is waiting for message to see if he texts back or not");
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (isGoodBoy) {
+        resolve("He text back");
+      } else {
+        reject("He ghosted");
+      }
+    }, 5000);
+  });
+}
+
+async function loveStory() {
+  let message = await waitForMessage(true);
+  console.log(message);
+  try {
+    let message2 = await waitForMessage(false);
+  } catch (err) {
+    console.log(err);
+  }
+}
+loveStory();
+
+// waitForMessage(true)
+//   .then((message) => console.log(message))
+//   .catch((message) => console.log(message));
+
+// waitForMessage(false)
+//   .then((message) => console.log(message))
+//   .catch((message) => console.log(message));
