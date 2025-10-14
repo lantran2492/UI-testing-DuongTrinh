@@ -10,3 +10,22 @@ console.log(rawData.substring(1, 13));
 console.log(arrayData[2]?.toLowerCase().includes("dev"));
 
 console.log(arrayData[0]?.toLowerCase().replace("n", "N"));
+
+//Regular expression
+// https://regexr.com/
+let fruit = [" Xoai", " Coc", " Buoi", " Me"];
+let result = fruit.filter((value: string, index: number) => {
+  return value.includes("a");
+});
+console.log(result);
+
+fruit.forEach((val) => {
+  console.log(val);
+});
+
+let newFruit = fruit.map((value) => {
+  return value.trim();
+});
+
+console.log(fruit);
+console.log(newFruit);
