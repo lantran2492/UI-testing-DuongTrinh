@@ -54,3 +54,11 @@ let homePage = new HomePage("New Page", "Revenue Chart");
 
 //đa hình
 // => overide logic mới lên method của class original đã defined
+
+function clickMenuByLabel(label: string) {
+  let xpath = `//a[.//span[text()=${label}]]`;
+  console.log("perform click");
+}
+
+clickMenuByLabel("Điện Thoại");
+clickMenuByLabel("Laptop");
